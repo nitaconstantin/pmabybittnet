@@ -6,8 +6,9 @@
     <title>Project Management Application - Employees</title>
     <script src="./js/main.js"></script>
     <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/index.css" />
   </head>
-  <body onload="checkUserLogin()">
+  <body onload="doStartUpConfig()">
     <div class="menu_bar">
       <div class="img_container">
         <img src="./images/logo.jpg" alt="Logo" width="50" height="50" />
@@ -19,6 +20,12 @@
       <div class="menu_item">
         <a href="./projects.html" class="menu_item_link"> Projects </a>
       </div>
+    </div>
+    <div class="addBtn_container">
+      <button class="addEmpButton">Ad new employee</button>
+    </div>
+    <div class="table_container">
+      <table id="employees_table" cellspacing="0" cellpadding="7"></table>
     </div>
   </body>
 </html>
