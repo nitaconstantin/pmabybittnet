@@ -1,0 +1,43 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+.menu_bar {
+  display: flex;
+  justify-content: flex-start;
+  border-bottom: 1px solid black;
+  align-items: center;
+  box-shadow: 5px 7px 5px rgba(0, 0, 0, 0.3);
+}
+
+.company_title {
+  margin-right: 10px;
+  margin-left: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 19px;
+  font-weight: bold;
+}
+
+.img_container {
+  margin-left: 10px;
+}
+
+.menu_item {
+  margin-left: 10px;
+  padding: 17px;
+}
+
+.menu_item_link {
+  font-size: 16px;
+  color: blue;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.menu_item_link:hover {
+  color: green;
+}
+
+.active {
+  background: rgb(228, 228, 228);
+}
