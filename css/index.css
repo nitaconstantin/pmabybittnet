@@ -16,6 +16,26 @@ td {
   text-align: center;
 }
 
+.add_container {
+  margin-top: 30px;
+  margin-left: 10px;
+}
+
+.add_form_container {
+  margin-top: 30px;
+  margin-left: 10px;
+  display: none;
+}
+
+.el_container {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.el_label {
+  width: 80px;
+}
+
 .addBtn_container {
   margin-left: 10px;
   margin-top: 30px;
@@ -42,6 +62,31 @@ td {
   background-color: #1e62d0;
 }
 .addEmpButton:active {
+  position: relative;
+  top: 1px;
+}
+
+.cancelButton {
+  box-shadow: inset 0px 1px 0px 0px #97c4fe;
+  background: linear-gradient(to bottom, #a3a4a6 5%, #909399 100%);
+  background-color: #a3a4a6;
+  border-radius: 6px;
+  border: 1px solid #d7d8db;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 6px 24px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #5a5b5c;
+}
+.cancelButton:hover {
+  background: linear-gradient(to bottom, #909399 5%, #a3a4a6 100%);
+  background-color: #909399;
+}
+.cancelButton:active {
   position: relative;
   top: 1px;
 }

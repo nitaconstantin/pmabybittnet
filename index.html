@@ -21,8 +21,53 @@
         <a href="./projects.html" class="menu_item_link"> Projects </a>
       </div>
     </div>
-    <div class="addBtn_container">
-      <button class="addEmpButton">Ad new employee</button>
+    <div class="addBtn_container" id="add_container">
+      <button class="addEmpButton" onclick="displayAddForm()">
+        Add new employee
+      </button>
+    </div>
+    <div class="add_form_container" id="add_form_container">
+      <form id="add_form">
+        <div class="el_container">
+          <div class="el_label">Name:</div>
+          <input type="text" name="name" id="name" />
+        </div>
+        <div class="el_container">
+          <div class="el_label">Age:</div>
+          <input type="text" name="age" id="age" placeholder="18-65" />
+        </div>
+        <div class="el_container">
+          <div class="el_label">BirthDate:</div>
+          <input
+            type="text"
+            name="birthDate"
+            id="birthDate"
+            placeholder="YYYY-MM-DD"
+          />
+        </div>
+        <div class="el_container">
+          <div class="el_label">Phone</div>
+          <input type="text" name="phone" id="phone" placeholder="0722333333" />
+        </div>
+        <div class="el_container">
+          <div class="el_label">Email</div>
+          <input
+            type="text"
+            name="email"
+            id="email"
+            placeholder="email@example.com"
+          />
+        </div>
+        <div>
+          <button class="cancelButton" type="button" onclick="cancelAddForm()">
+            Cancel
+          </button>
+          <button class="addEmpButton" type="button" onclick="addNewEmp()">
+            Add
+          </button>
+          <button type="submit" style="display: none">Submit</button>
+        </div>
+      </form>
     </div>
     <div class="table_container">
       <table id="employees_table" cellspacing="0" cellpadding="7"></table>

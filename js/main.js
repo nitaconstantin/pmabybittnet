@@ -54,8 +54,6 @@ function createTable() {
   <th>Email:</th>
 </tr>`;
   employeesArr.forEach((employee, i) => {
-    console.log(i);
-    console.log(employee);
     tableString += createRow(employee, i);
   });
   table.innerHTML = tableString;
@@ -78,6 +76,27 @@ function createRow(employee, i) {
   return rowStr;
 }
 
+function displayAddForm() {
+  document.getElementById("add_form_container").style.display = "block";
+  document.getElementById("add_container").style.display = "none";
+}
+
+function cancelAddForm() {
+  const userConfirm = confirm(
+    "Are you sure you want to cancel adding a new user?"
+  );
+  console.log(userConfirm);
+
+  if (userConfirm) {
+    document.getElementById("add_form").reset();
+    document.getElementById("add_form_container").style.display = "none";
+    document.getElementById("add_container").style.display = "block";
+  }
+}
+
+function addNewEmp() {
+  console.log("adding .....");
+}
 // function createTableRow() {
 //   let value = "";
 //   employeesArr.forEach((employee, i) => {
