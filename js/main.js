@@ -94,9 +94,128 @@ function cancelAddForm() {
   }
 }
 
+let initialValidationObj = {
+  name: false,
+  age: false,
+  birthDate: false,
+  phone: false,
+  email: false,
+};
+
+let validationObj = initialValidationObj;
+
+function checkValidationObj() {
+  let validationKeys = Object.keys(validationObj);
+  let flag = true;
+  validationKeys.forEach((key) => {
+    if (!validationObj[key]) {
+      flag = false;
+    }
+    if (flag) {
+      document.getElementById("add_button").disabled = false;
+    } else {
+      document.getElementById("add_button").disabled = true;
+    }
+  });
+}
+
+function checkName() {
+  const name_el = document.getElementById("name");
+  const name = name_el.value;
+  if (name === "" || name === null) {
+    document.getElementById("name_err").style.display = "block";
+    name_el.classList.add("input_err");
+    validationObj.name = false;
+  } else {
+    document.getElementById("name_err").style.display = "none";
+    name_el.classList.remove("input_err");
+    validationObj.name = true;
+  }
+
+  checkValidationObj();
+}
+
+function checkAge() {
+  const age_el = document.getElementById("age");
+  const age = age_el.value;
+  if (age !== "" && !isNaN(age) && age >= 18 && age <= 65) {
+    document.getElementById("age_err").style.display = "none";
+    age_el.classList.remove("input_err");
+    validationObj.age = true;
+  } else {
+    document.getElementById("age_err").style.display = "block";
+    age_el.classList.add("input_err");
+    validationObj.age = false;
+  }
+
+  checkValidationObj();
+}
+
+function checkBirthdate() {
+  const bdate_el = document.getElementById("birthDate");
+  const bdate = bdate_el.value;
+
+  const pattern = /^\d{4}-\d{2}-\d{2}$/g;
+  // console.log(bdate, pattern.test(bdate));
+
+  const result = pattern.test(bdate);
+  if (bdate === "" || !result) {
+    document.getElementById("bdate_err").style.display = "block";
+    bdate_el.classList.add("input_err");
+  } else {
+    document.getElementById("bdate_err").style.display = "none";
+    bdate_el.classList.remove("input_err");
+  }
+  checkValidationObj();
+}
+
+function checkPhone() {
+  const phone_el = document.getElementById("phone");
+  const phone = phone_el.value;
+  const pattern = /^07\d{8}$/g;
+
+  const result = pattern.test(phone);
+  if (!result) {
+    document.getElementById("phone_err").style.display = "block";
+    phone_el.classList.add("input_err");
+  } else {
+    document.getElementById("phone_err").style.display = "none";
+    phone_el.classList.remove("input_err");
+  }
+
+  checkValidationObj();
+}
+
+function checkElement(element) {
+  const html_el = document.getElementById(element);
+  const el_value = html_el.value;
+  let pattern;
+  if (element === "birthDate") {
+    pattern = /^\d{4}-\d{2}-\d{2}$/g;
+  } else if (element === "phone") {
+    pattern = /^07\d{8}$/g;
+  } else if (element === "email") {
+    pattern = /^[a-zA-Z]+@[a-zA-Z]+\.[a-zA-Z]{2,3}$/g;
+  }
+
+  const result = pattern.test(el_value);
+  if (el_value === "" || !result) {
+    document.getElementById(element + "_err").style.display = "block";
+    html_el.classList.add("input_err");
+    validationObj[element] = false;
+  } else {
+    document.getElementById(element + "_err").style.display = "none";
+    html_el.classList.remove("input_err");
+    validationObj[element] = true;
+  }
+
+  checkValidationObj();
+}
+
 function addNewEmp() {
   console.log("adding .....");
 }
+
 // function createTableRow() {
 //   let value = "";
 //   employeesArr.forEach((employee, i) => {

@@ -30,11 +30,21 @@
       <form id="add_form">
         <div class="el_container">
           <div class="el_label">Name:</div>
-          <input type="text" name="name" id="name" />
+          <input type="text" name="name" id="name" onkeyup="checkName()" />
+          <div class="error_txt" id="name_err">You must add a name</div>
         </div>
         <div class="el_container">
           <div class="el_label">Age:</div>
-          <input type="text" name="age" id="age" placeholder="18-65" />
+          <input
+            type="text"
+            name="age"
+            id="age"
+            placeholder="18-65"
+            onkeyup="checkAge()"
+          />
+          <div class="error_txt" id="age_err">
+            You must add age between 18 and 65
+          </div>
         </div>
         <div class="el_container">
           <div class="el_label">BirthDate:</div>
@@ -43,11 +53,24 @@
             name="birthDate"
             id="birthDate"
             placeholder="YYYY-MM-DD"
+            onkeyup="checkElement('birthDate')"
           />
+          <div class="error_txt" id="birthDate_err">
+            You must use the suggested format
+          </div>
         </div>
         <div class="el_container">
           <div class="el_label">Phone</div>
-          <input type="text" name="phone" id="phone" placeholder="0722333333" />
+          <input
+            type="text"
+            name="phone"
+            id="phone"
+            placeholder="0722333333"
+            onkeyup="checkElement('phone')"
+          />
+          <div class="error_txt" id="phone_err">
+            You must use the suggested format
+          </div>
         </div>
         <div class="el_container">
           <div class="el_label">Email</div>
@@ -56,13 +79,23 @@
             name="email"
             id="email"
             placeholder="email@example.com"
+            onkeyup="checkElement('email')"
           />
+          <div class="error_txt" id="email_err">
+            You must use the suggested format
+          </div>
         </div>
         <div>
           <button class="cancelButton" type="button" onclick="cancelAddForm()">
             Cancel
           </button>
-          <button class="addEmpButton" type="button" onclick="addNewEmp()">
+          <button
+            class="addEmpButton"
+            type="button"
+            onclick="addNewEmp()"
+            disabled
+            id="add_button"
+          >
             Add
           </button>
           <button type="submit" style="display: none">Submit</button>

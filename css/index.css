@@ -66,6 +66,14 @@ td {
   top: 1px;
 }
 
+.addEmpButton:disabled {
+  box-shadow: inset 0px 1px 0px 0px #97c4fe;
+  background: linear-gradient(to bottom, #a3a4a6 5%, #909399 100%);
+  background-color: #a3a4a6;
+  border: 1px solid #d7d8db;
+  text-shadow: 0px 1px 0px #5a5b5c;
+}
+
 .cancelButton {
   box-shadow: inset 0px 1px 0px 0px #97c4fe;
   background: linear-gradient(to bottom, #a3a4a6 5%, #909399 100%);
@@ -89,4 +97,14 @@ td {
 .cancelButton:active {
   position: relative;
   top: 1px;
+}
+
+.error_txt {
+  display: none;
+  color: red;
+  margin-left: 10px;
+}
+
+.input_err {
+  border: 1px solid red;
 }
