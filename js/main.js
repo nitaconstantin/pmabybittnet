@@ -71,11 +71,14 @@ function createTable() {
 }
 
 function deleteEmp(i) {
-  console.log("index: ", i);
+  // console.log("index: ", i);
   if (
     confirm("Are you sure you want to delete " + employeesArr[i].name + "?")
   ) {
-    console.log("deleting...");
+    // console.log("deleting...");
+    employeesArr.splice(i, 1);
+    localStorage.setItem("employeesArr", JSON.stringify(employeesArr));
+    createTable();
   }
 }
 
