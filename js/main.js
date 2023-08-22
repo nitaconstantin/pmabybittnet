@@ -44,8 +44,6 @@ function checkUserLogin() {
 // let employeesArr = [];
 const empFromLocalStorage = localStorage.getItem("employeesArr");
 let employeesArr = JSON.parse(empFromLocalStorage);
-console.log(empFromLocalStorage);
-console.log(employeesArr);
 
 function createTable() {
   if (employeesArr.length === 0 && employeesArr) {
@@ -72,6 +70,15 @@ function createTable() {
   }
 }
 
+function deleteEmp(i) {
+  console.log("index: ", i);
+  if (
+    confirm("Are you sure you want to delete " + employeesArr[i].name + "?")
+  ) {
+    console.log("deleting...");
+  }
+}
+
 function createRow(employee, i) {
   const rowIndex = i + 1;
   let projectRes = !employee.project ? "-" : employee.project;
@@ -90,10 +97,6 @@ function createRow(employee, i) {
     ")'>Del</button></td>";
   rowStr += "</tr>";
   return rowStr;
-}
-
-function deleteEmp() {
-  console.log("index: ", i);
 }
 
 function displayAddForm() {
