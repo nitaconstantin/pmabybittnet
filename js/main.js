@@ -22,12 +22,12 @@ let employeesArr = [
     email: "alex@alex.ro",
   },
   {
-    name: "Andreea",
+    name: "Madalina",
     age: 25,
     project: null,
     birthDate: "1998-01-10",
     hired: "2021-08-21",
-    phone: "07222222",
+    phone: "0722222222",
     email: "mada@mada.ro",
   },
   {
@@ -37,13 +37,19 @@ let employeesArr = [
     birthDate: "1994-01-10",
     hired: "2022-10-03",
     phone: "0722113333",
-    email: "mada@mada.ro",
+    email: "radu@radu.ro",
   },
 ];
 
+employeesArr = [];
+
 function createTable() {
-  const table = document.getElementById("employees_table");
-  let tableString = `<tr>
+  if (employeesArr.length === 0 && employeesArr) {
+    document.getElementById("no_emp_container").style.display = "block";
+    document.getElementById("table_container").style.display = "none";
+  } else {
+    const table = document.getElementById("employees_table");
+    let tableString = `<tr>
   <th>No.</th>
   <th>Name:</th>
   <th>Age:</th>
@@ -53,11 +59,12 @@ function createTable() {
   <th>Phone:</th>
   <th>Email:</th>
 </tr>`;
-  employeesArr.forEach((employee, i) => {
-    tableString += createRow(employee, i);
-  });
-  table.innerHTML = tableString;
-  // table.innerHTML = createTableRow();
+    employeesArr.forEach((employee, i) => {
+      tableString += createRow(employee, i);
+    });
+    table.innerHTML = tableString;
+    // table.innerHTML = createTableRow();
+  }
 }
 
 function createRow(employee, i) {
@@ -88,10 +95,14 @@ function cancelAddForm() {
   console.log(userConfirm);
 
   if (userConfirm) {
-    document.getElementById("add_form").reset();
-    document.getElementById("add_form_container").style.display = "none";
-    document.getElementById("add_container").style.display = "block";
+    clearAndHideForm();
   }
+}
+
+function clearAndHideForm() {
+  document.getElementById("add_form").reset();
+  document.getElementById("add_form_container").style.display = "none";
+  document.getElementById("add_container").style.display = "block";
 }
 
 let initialValidationObj = {
@@ -213,7 +224,26 @@ function checkElement(element) {
 }
 
 function addNewEmp() {
-  console.log("adding .....");
+  // console.log("adding .....");
+  const newDate = new Date();
+  const year = newDate.getFullYear();
+  const month = newDate.getMonth() + 1;
+  const day = newDate.getDate();
+  const monthToAdd = month < 10 ? "0" + month : month;
+
+  const newEmpObj = {
+    name: document.getElementById("name").value,
+    age: document.getElementById("age").value,
+    birthDate: document.getElementById("birthDate").value,
+    phone: document.getElementById("phone").value,
+    email: document.getElementById("email").value,
+    hired: year + "-" + monthToAdd + "-" + day,
+    project: null,
+  };
+  console.log(newEmpObj);
+  employeesArr.push(newEmpObj);
+  createTable();
+  clearAndHideForm();
 }
 
 // function createTableRow() {
