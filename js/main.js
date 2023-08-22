@@ -11,37 +11,41 @@ function checkUserLogin() {
   }
 }
 
-let employeesArr = [
-  {
-    name: "Alex",
-    age: 27,
-    project: null,
-    birthDate: "1996-01-10",
-    hired: "2020-10-05",
-    phone: "0722112233",
-    email: "alex@alex.ro",
-  },
-  {
-    name: "Madalina",
-    age: 25,
-    project: null,
-    birthDate: "1998-01-10",
-    hired: "2021-08-21",
-    phone: "0722222222",
-    email: "mada@mada.ro",
-  },
-  {
-    name: "Radu",
-    age: 29,
-    project: null,
-    birthDate: "1994-01-10",
-    hired: "2022-10-03",
-    phone: "0722113333",
-    email: "radu@radu.ro",
-  },
-];
+// let employeesArr = [
+//   {
+//     name: "Alex",
+//     age: 27,
+//     project: null,
+//     birthDate: "1996-01-10",
+//     hired: "2020-10-05",
+//     phone: "0722112233",
+//     email: "alex@alex.ro",
+//   },
+//   {
+//     name: "Madalina",
+//     age: 25,
+//     project: null,
+//     birthDate: "1998-01-10",
+//     hired: "2021-08-21",
+//     phone: "0722222222",
+//     email: "mada@mada.ro",
+//   },
+//   {
+//     name: "Radu",
+//     age: 29,
+//     project: null,
+//     birthDate: "1994-01-10",
+//     hired: "2022-10-03",
+//     phone: "0722113333",
+//     email: "radu@radu.ro",
+//   },
+// ];
 
-employeesArr = [];
+// let employeesArr = [];
+const empFromLocalStorage = localStorage.getItem("employeesArr");
+let employeesArr = JSON.parse(empFromLocalStorage);
+console.log(empFromLocalStorage);
+console.log(employeesArr);
 
 function createTable() {
   if (employeesArr.length === 0 && employeesArr) {
@@ -58,6 +62,7 @@ function createTable() {
   <th>Hired at:</th>
   <th>Phone:</th>
   <th>Email:</th>
+  <th>Actions:</th>
 </tr>`;
     employeesArr.forEach((employee, i) => {
       tableString += createRow(employee, i);
@@ -79,8 +84,16 @@ function createRow(employee, i) {
   rowStr += "<td>" + employee.hired + "</td>";
   rowStr += "<td>" + employee.phone + "</td>";
   rowStr += "<td>" + employee.email + "</td>";
+  rowStr +=
+    "<td><button class='delButton' onclick='deleteEmp(" +
+    i +
+    ")'>Del</button></td>";
   rowStr += "</tr>";
   return rowStr;
+}
+
+function deleteEmp() {
+  console.log("index: ", i);
 }
 
 function displayAddForm() {
@@ -240,8 +253,9 @@ function addNewEmp() {
     hired: year + "-" + monthToAdd + "-" + day,
     project: null,
   };
-  console.log(newEmpObj);
+  // console.log(newEmpObj);
   employeesArr.push(newEmpObj);
+  localStorage.setItem("employeesArr", JSON.stringify(employeesArr));
   createTable();
   clearAndHideForm();
 }
