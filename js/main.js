@@ -82,6 +82,21 @@ function deleteEmp(i) {
   }
 }
 
+function editEmp(i) {
+  displayAddForm();
+  const validationKeys = Object.keys(validationObj);
+  validationKeys.forEach((key) => {
+    document.getElementById(key).value = employeesArr[i][key];
+    validationObj[key] = true;
+  });
+  checkValidationObj();
+  // document.getElementById("name").value = employeesArr[i].name;
+  // document.getElementById("age").value = employeesArr[i].age;
+  // document.getElementById("birthDate").value = employeesArr[i].birthDate;
+  // document.getElementById("phone").value = employeesArr[i].phone;
+  // document.getElementById("email").value = employeesArr[i].email;
+}
+
 function createRow(employee, i) {
   const rowIndex = i + 1;
   let projectRes = !employee.project ? "-" : employee.project;
@@ -95,7 +110,9 @@ function createRow(employee, i) {
   rowStr += "<td>" + employee.phone + "</td>";
   rowStr += "<td>" + employee.email + "</td>";
   rowStr +=
-    "<td><button class='delButton' onclick='deleteEmp(" +
+    "<td><button class='editEmpButton' onclick='editEmp(" +
+    i +
+    ")'>Edit</button><button class='delButton' onclick='deleteEmp(" +
     i +
     ")'>Del</button></td>";
   rowStr += "</tr>";
@@ -105,6 +122,13 @@ function createRow(employee, i) {
 function displayAddForm() {
   document.getElementById("add_form_container").style.display = "block";
   document.getElementById("add_container").style.display = "none";
+  const validationKeys = Object.keys(validationObj);
+  validationKeys.forEach((key) => {
+    validationObj[key] = false;
+  });
+  checkValidationObj();
+  // let validationObj = initialValidationObj;
+  // checkValidationObj();
 }
 
 function cancelAddForm() {
