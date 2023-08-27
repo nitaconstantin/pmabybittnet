@@ -19,6 +19,8 @@ function createTable() {
     document.getElementById("no_emp_container").style.display = "block";
     document.getElementById("table_container").style.display = "none";
   } else {
+    document.getElementById("no_emp_container").style.display = "none";
+    document.getElementById("table_container").style.display = "block";
     const table = document.getElementById("projects_table");
     let tableString = `<tr>
   <th>No.</th>
@@ -47,7 +49,7 @@ function createRow(project, i) {
   rowStr += "<td>" + project.duration + "</td>";
 
   rowStr += "<td>" + project.no_pers + "</td>";
-  rowStr += "<td>" + project.employee + "</td>";
+  rowStr += "<td>" + project.employees + "</td>";
   rowStr +=
     "<td><button class='editEmpButton' onclick='editPrj(" +
     i +
@@ -58,11 +60,15 @@ function createRow(project, i) {
   return rowStr;
 }
 
-function displayAddForm() {
+function displayAddForm(resetForm) {
   document.getElementById("add_form_container").style.display = "block";
   document.getElementById("add_container").style.display = "none";
   document.getElementById("add_button").style.display = "inline-block";
   document.getElementById("edit_button").style.display = "none";
+
+  if (resetForm) {
+    document.getElementById("add_form").reset();
+  }
 
   const validationKeys = Object.keys(validationObj);
   validationKeys.forEach((key) => {
@@ -185,4 +191,45 @@ function addNewProject() {
   localStorage.setItem("projectsArr", JSON.stringify(projectsArr));
   createTable();
   clearAndHideForm();
+}
+
+function deletePrj(i) {
+  // console.log("index: ", i);
+  if (confirm("Are you sure you want to delete " + projectsArr[i].name + "?")) {
+    // console.log("deleting...");
+    projectsArr.splice(i, 1);
+    localStorage.setItem("projectsArr", JSON.stringify(projectsArr));
+    createTable();
+  }
+}
+
+let savePrjIndex = 0;
+function editPrj(i) {
+  savePrjIndex = i;
+  displayAddForm(false);
+  document.getElementById("add_button").style.display = "none";
+  document.getElementById("edit_button").style.display = "inline-block";
+  const validationKeys = Object.keys(validationObj);
+  validationKeys.forEach((key) => {
+    document.getElementById(key).value = projectsArr[i][key];
+    validationObj[key] = true;
+  });
+  checkValidationObj();
+  // document.getElementById("name").value = employeesArr[i].name;
+  // document.getElementById("age").value = employeesArr[i].age;
+  // document.getElementById("birthDate").value = employeesArr[i].birthDate;
+  // document.getElementById("phone").value = employeesArr[i].phone;
+  // document.getElementById("email").value = employeesArr[i].email;
+}
+
+function saveEditProject() {
+  // employeesArr[saveEmpIndex].name = document.getElementById("name").value;
+  const validationKeys = Object.keys(validationObj);
+  validationKeys.forEach((key) => {
+    projectsArr[savePrjIndex][key] = document.getElementById(key).value;
+  });
+  localStorage.setItem("projectsArr", JSON.stringify(projectsArr));
+  createTable();
+  document.getElementById("add_form_container").style.display = "none";
+  document.getElementById("add_container").style.display = "block";
 }

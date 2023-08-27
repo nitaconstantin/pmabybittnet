@@ -85,7 +85,7 @@ function deleteEmp(i) {
 let saveEmpIndex = 0;
 function editEmp(i) {
   saveEmpIndex = i;
-  displayAddForm();
+  displayAddForm(false);
   document.getElementById("add_button").style.display = "none";
   document.getElementById("edit_button").style.display = "inline-block";
   const validationKeys = Object.keys(validationObj);
@@ -141,6 +141,10 @@ function displayAddForm() {
   document.getElementById("add_container").style.display = "none";
   document.getElementById("add_button").style.display = "inline-block";
   document.getElementById("edit_button").style.display = "none";
+
+  if (resetForm) {
+    document.getElementById("add_form").reset();
+  }
 
   const validationKeys = Object.keys(validationObj);
   validationKeys.forEach((key) => {
