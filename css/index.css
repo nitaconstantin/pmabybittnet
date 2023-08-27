@@ -168,3 +168,9 @@ td {
   position: relative;
   top: 1px;
 }
+
+.emp_link {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+}

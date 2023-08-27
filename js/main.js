@@ -119,7 +119,12 @@ function createRow(employee, i) {
   let projectRes = !employee.project ? "-" : employee.project;
   let rowStr = "<tr>";
   rowStr += "<td>" + rowIndex + "</td>";
-  rowStr += "<td>" + employee.name + "</td>";
+  rowStr +=
+    "<td><a href='employee.html?index=" +
+    i +
+    "' class='emp_link'>" +
+    employee.name +
+    "</a></td>";
   rowStr += "<td>" + employee.age + "</td>";
   rowStr += "<td>" + projectRes + "</td>";
   rowStr += "<td>" + employee.birthDate + "</td>";
