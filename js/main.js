@@ -82,8 +82,12 @@ function deleteEmp(i) {
   }
 }
 
+let saveEmpIndex = 0;
 function editEmp(i) {
+  saveEmpIndex = i;
   displayAddForm();
+  document.getElementById("add_button").style.display = "none";
+  document.getElementById("edit_button").style.display = "inline-block";
   const validationKeys = Object.keys(validationObj);
   validationKeys.forEach((key) => {
     document.getElementById(key).value = employeesArr[i][key];
@@ -95,6 +99,19 @@ function editEmp(i) {
   // document.getElementById("birthDate").value = employeesArr[i].birthDate;
   // document.getElementById("phone").value = employeesArr[i].phone;
   // document.getElementById("email").value = employeesArr[i].email;
+}
+
+function saveEditEmp() {
+  console.log("index to save:", saveEmpIndex);
+  // employeesArr[saveEmpIndex].name = document.getElementById("name").value;
+  const validationKeys = Object.keys(validationObj);
+  validationKeys.forEach((key) => {
+    employeesArr[saveEmpIndex][key] = document.getElementById(key).value;
+  });
+  localStorage.setItem("employeesArr", JSON.stringify(employeesArr));
+  createTable();
+  document.getElementById("add_form_container").style.display = "none";
+  document.getElementById("add_container").style.display = "block";
 }
 
 function createRow(employee, i) {
@@ -122,6 +139,9 @@ function createRow(employee, i) {
 function displayAddForm() {
   document.getElementById("add_form_container").style.display = "block";
   document.getElementById("add_container").style.display = "none";
+  document.getElementById("add_button").style.display = "inline-block";
+  document.getElementById("edit_button").style.display = "none";
+
   const validationKeys = Object.keys(validationObj);
   validationKeys.forEach((key) => {
     validationObj[key] = false;
@@ -167,8 +187,10 @@ function checkValidationObj() {
     }
     if (flag) {
       document.getElementById("add_button").disabled = false;
+      document.getElementById("edit_button").disabled = false;
     } else {
       document.getElementById("add_button").disabled = true;
+      document.getElementById("edit_button").disabled = true;
     }
   });
 }
