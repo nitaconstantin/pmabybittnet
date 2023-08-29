@@ -5,8 +5,20 @@ h3 {
 .prj_container {
   display: flex;
   margin-left: 10px;
+  margin-bottom: 10px;
 }
 
-.prj_label {
+.label {
   width: 100px;
+  font-weight: bold;
+}
+
+.emp_phone_container,
+.emp_email_container,
+.emp_age_container,
+.img_container {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  margin-bottom: 10px;
 }

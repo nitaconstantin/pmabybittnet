@@ -313,6 +313,7 @@ function addNewEmp() {
     email: document.getElementById("email").value,
     hired: year + "-" + monthToAdd + "-" + day,
     project: null,
+    image: "./images/user.png",
   };
   // console.log(newEmpObj);
   employeesArr.push(newEmpObj);

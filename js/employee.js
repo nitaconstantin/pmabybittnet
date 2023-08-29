@@ -25,6 +25,27 @@ function getEmpData() {
   console.log(employeesArr[empIndex]);
   document.getElementById("emp_name").innerText = employeesArr[empIndex].name;
   createSelect();
+
+  document.getElementById("emp_age").innerText = employeesArr[empIndex].age;
+  document.getElementById("emp_phone_no").innerText =
+    employeesArr[empIndex].phone;
+
+  document
+    .getElementById("emp_phone_no")
+    .setAttribute("href", "tel:" + employeesArr[empIndex].phone);
+  document
+    .getElementById("emp_email_content")
+    .setAttribute("href", "mailto:" + employeesArr[empIndex].email);
+
+  document.getElementById("emp_email_content").innerText =
+    employeesArr[empIndex].email;
+
+  let img = document
+    .getElementById("img_emp")
+    .setAttribute("src", employeesArr[empIndex].image);
+  if (!img) {
+    document.getElementById("img_emp").setAttribute("src", "./images/user.png");
+  }
 }
 
 function createSelect() {
@@ -58,5 +79,5 @@ function saveEmpProject() {
 
   employeesArr[empIndex].project = prj_selected === "0" ? null : prj_selected;
   localStorage.setItem("employeesArr", JSON.stringify(employeesArr));
-  console.log(prj_selected);
+  // console.log(prj_selected);
 }
