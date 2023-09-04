@@ -43,13 +43,15 @@ function checkUserLogin() {
 
 // let employeesArr = [];
 const empFromLocalStorage = localStorage.getItem("employeesArr");
-let employeesArr = JSON.parse(empFromLocalStorage);
+let employeesArr = empFromLocalStorage ? JSON.parse(empFromLocalStorage) : [];
 
 function createTable() {
   if (employeesArr.length === 0 && employeesArr) {
     document.getElementById("no_emp_container").style.display = "block";
     document.getElementById("table_container").style.display = "none";
   } else {
+    document.getElementById("no_emp_container").style.display = "none";
+    document.getElementById("table_container").style.display = "block";
     const table = document.getElementById("employees_table");
     let tableString = `<tr>
   <th>No.</th>
@@ -66,7 +68,6 @@ function createTable() {
       tableString += createRow(employee, i);
     });
     table.innerHTML = tableString;
-    // table.innerHTML = createTableRow();
   }
 }
 
@@ -147,9 +148,9 @@ function displayAddForm() {
   document.getElementById("add_button").style.display = "inline-block";
   document.getElementById("edit_button").style.display = "none";
 
-  if (resetForm) {
-    document.getElementById("add_form").reset();
-  }
+  // if (resetForm) {
+  //   document.getElementById("add_form").reset();
+  // }
 
   const validationKeys = Object.keys(validationObj);
   validationKeys.forEach((key) => {
@@ -319,6 +320,7 @@ function addNewEmp() {
   employeesArr.push(newEmpObj);
   localStorage.setItem("employeesArr", JSON.stringify(employeesArr));
   createTable();
+
   clearAndHideForm();
 }
 
