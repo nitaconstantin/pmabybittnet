@@ -4,9 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Project Management Application - Employees</title>
-    <script src="./js/main.js"></script>
     <link rel="stylesheet" href="./css/common.css" />
     <link rel="stylesheet" href="./css/index.css" />
+    <script src="./js/main.js"></script>
+    
   </head>
   <body onload="doStartUpConfig()">
     <div class="menu_bar">
@@ -112,11 +113,30 @@
         </div>
       </form>
     </div>
+    <button id="sortByName"  onclick="customSort('sortByName')">Sort by Name</button>
+    <button id="sortByAge"  onclick="customSort('sortByAge')">Sort by Age</button>
+    <button id="sortByBirthDate"  onclick="customSort('sortByBirthDate')">Sort by BirthDate</button>
+    <button id="sortByEmail"  onclick="customSort('sortByEmail')">Sort by Email</button>
+    <button id="resetSort"  onclick="customSort('resetSort')">Reset sort</button>
     <div id="no_emp_container" class="no_emp_container">
       No employees saved yet
     </div>
     <div class="table_container" id="table_container">
       <table id="employees_table" cellspacing="0" cellpadding="7"></table>
     </div>
+    <select name="selectSort" id="selectSort" onchange="select()">
+      <option value="default">Default</option>
+      <option value="selectSortName">Name</option>
+      <option value="selectSortAge">Age</option>
+      <option value="selectSortBirthDate">BirthDate</option>
+      <option value="selectSortEmail">Email</option>
+    </select>
+   <script>
+  //   function select() {
+  //     const sortVal = document.getElementById("selectSort").value;
+  //     console.log(sortVal);
+  // }
+   </script>
+    
   </body>
 </html>

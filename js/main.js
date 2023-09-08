@@ -45,6 +45,66 @@ function checkUserLogin() {
 const empFromLocalStorage = localStorage.getItem("employeesArr");
 let employeesArr = empFromLocalStorage ? JSON.parse(empFromLocalStorage) : [];
 
+sortArrayOfObjects = (arr, key) => {
+  arr.sort((a, b) => {
+    // return a[key] - b[key];
+    if (a[key] < b[key]) {
+      return -1;
+    }
+    if (a[key] > b[key]) {
+      return 1;
+    }
+    return 0;
+  });
+};
+
+// const name_th = document.getElementById("name_th");
+// name_th.addEventListener("click", sortArrayOfObjects(employeesArr, "name"));
+// sortArrayOfObjects(employeesArr, "name");
+const empArrClone = [...employeesArr];
+empArrClone.forEach((emp, i) => {
+  emp.id = i;
+  i++;
+});
+
+function customSort(el) {
+  const el_name = document.getElementById(el);
+  if (el === "sortByName") {
+    sortArrayOfObjects(employeesArr, "name");
+  } else if (el === "sortByAge") {
+    sortArrayOfObjects(employeesArr, "age");
+  } else if (el === "sortByBirthDate") {
+    sortArrayOfObjects(employeesArr, "birthDate");
+  } else if (el === "sortByEmail") {
+    sortArrayOfObjects(employeesArr, "email");
+  } else if (el === "resetSort") {
+    employeesArr = empArrClone;
+    // sortArrayOfObjects(employeesArr, empArrClone);
+    sortArrayOfObjects(employeesArr, "id");
+  }
+
+  createTable();
+}
+
+function select() {
+  const sortVal = document.getElementById("selectSort").value;
+  // console.log(sortVal);
+  if (sortVal === "default") {
+    employeesArr = empArrClone;
+    // sortArrayOfObjects(employeesArr, empArrClone);
+    sortArrayOfObjects(employeesArr, "id");
+  } else if (sortVal === "selectSortName") {
+    sortArrayOfObjects(employeesArr, "name");
+  } else if (sortVal === "selectSortAge") {
+    sortArrayOfObjects(employeesArr, "age");
+  } else if (sortVal === "selectSortBirthDate") {
+    sortArrayOfObjects(employeesArr, "birthDate");
+  } else if (sortVal === "selectSortEmail") {
+    sortArrayOfObjects(employeesArr, "email");
+  }
+  createTable();
+}
+
 function createTable() {
   if (employeesArr.length === 0 && employeesArr) {
     document.getElementById("no_emp_container").style.display = "block";
@@ -55,8 +115,8 @@ function createTable() {
     const table = document.getElementById("employees_table");
     let tableString = `<tr>
   <th>No.</th>
-  <th>Name:</th>
-  <th>Age:</th>
+  <th id="name_th">Name:</th>
+  <th id="age_th">Age:</th>
   <th>Project:</th>
   <th>Birth Date:</th>
   <th>Hired at:</th>
